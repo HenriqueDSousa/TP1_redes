@@ -4,12 +4,20 @@ import json
 import struct
 
 
+def logexit(msg):
+    print(msg)
+    exit(1)
+
+def usage():
+    print("./bridge_defense.py <host> <port> <GAS>")
+
 def send_to_servers(sockets, servers, json_data):
     """
     Function to send the same message to all servers
     """
-    
+
     for i, server_address in enumerate(servers):
+        
         try:
             sockets[i].sendto(json_data.encode(), server_address)
         except socket.error as e:
@@ -32,3 +40,25 @@ def receive_from_servers(sockets):
 
     return responses
 
+def auth(gas, sockets, servers):
+   
+    # sending the authentication to server
+    data = {
+            "type": "authreq",
+            "auth": gas
+        }
+        
+    json_data = json.dumps(data)
+    send_to_servers(sockets, servers, json_data)
+    
+    # receiving authentication response from each server
+    responses = receive_from_servers(sockets)
+    print("sent")
+    # Checking authentication status
+
+    for i, response in enumerate(responses):
+        print(response)
+
+        if response.get('status', -1) != 0:
+            logexit("Autherror")
+   

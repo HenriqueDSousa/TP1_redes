@@ -6,13 +6,6 @@ import json
 import struct
 from utils import *
 
-def logexit(msg):
-    print(msg)
-    exit(1)
-
-def usage():
-    print("./bridge_defense.py <host> <port> <GAS>")
-
 
 def main():
 
@@ -34,23 +27,22 @@ def main():
     sockets = [socket.socket(socket.AF_INET, socket.SOCK_DGRAM) for _ in range(4)]
     # AUTHENTICATION
      
+    auth(gas, sockets, servers)
 
-    # sending the authentication to server
+    # GETCANNONS
+
     data = {
-            "type": "authreq",
-            "auth": gas
+            "type": "getcannons",
+            "auth": gas,
         }
-        
-    json_data = json.dumps(data)
-    send_to_servers(sockets, servers, json_data)
     
-    # receiving authentication response from each server
-    responses = receive_from_servers(sockets)
-    print("sent")
-    # Checking authentication status
-    for i, response in enumerate(responses):
-        print(response)
-        
+    json_data = json.dumps(data)
+    #sending to one server
+    send_to_servers(sockets, [servers[0]], json_data)
+    responses = receive_from_servers([sockets[0]])
+
+    print(responses)    
+
 
     for sock in sockets:
         sock.close()
