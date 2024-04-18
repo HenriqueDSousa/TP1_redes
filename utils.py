@@ -3,6 +3,13 @@ import json
 import time
 
 
+SHOTS_TO_SINK = {
+    'frigate': 1,
+    'destroyer': 2,
+    'battleship': 3
+}
+
+
 def logexit(msg):
     print(msg)
     exit(1)
@@ -170,3 +177,76 @@ def shot(gas, servers, shots_list):
             logexit(f"Failed to get shot response from server {server}")
 
         print(responses[server_id])
+
+   
+
+def get_shots_list(cannons_table, ships_table):
+
+    """
+        Function to decide the shots to be done. Find the lower life ships 
+        among the cannon ranges. Those are the ones to be shot
+    """
+    shots_list = []
+    for row in range(5):
+        for bridge in range(8):
+            if cannons_table[row][bridge] == 1:
+                
+                river = -1
+                weakest_ship_life = 1000
+                weakest_ship = -1
+                
+                # fiding a ship
+                if row == 0:
+
+                    # If the cannon is in row 0 it only shots river 1
+                    if ships_table[row][bridge] != []:
+                        print("ships found")
+                        for ship in ships_table[row][bridge]:
+                            ship_life = SHOTS_TO_SINK[ship.get('hull')] - ship.get('hits')
+                            if ship_life < weakest_ship_life:
+                                weakest_ship = ship.get('id')
+                                river = row
+                                print([bridge + 1, row], weakest_ship)
+                                weakest_ship_life = ship_life
+                
+                # if ship is between row 4 and 0, it can shot both adjacent rivers
+                if row < 4 and row > 0:
+                    
+                    
+                    if ships_table[row][bridge] != []:
+                        print("ships found")
+                        for ship in ships_table[row][bridge]:
+                            ship_life = SHOTS_TO_SINK[ship.get('hull')] - ship.get('hits')
+                            if ship_life < weakest_ship_life:
+                                weakest_ship = ship.get('id')
+                                river = row
+                                print([bridge + 1, row], weakest_ship)
+                                weakest_ship_life = ship_life
+
+                    if ships_table[row-1][bridge] != []:
+                        print("ships found")
+                        for ship in ships_table[row][bridge]:
+                            ship_life = SHOTS_TO_SINK[ship.get('hull')] - ship.get('hits')
+                            if ship_life < weakest_ship_life:
+                                weakest_ship = ship.get('id')
+                                river = row-1
+                                print([bridge + 1, row], weakest_ship)
+                                weakest_ship_life = ship_life
+                
+                # if ship is in row 4 it can shot only in river 4
+                if row  == 4:
+                    if ships_table[row-1][bridge] != []:
+                        print("ships found")
+                        for ship in ships_table[row-1][bridge]:
+                            ship_life = SHOTS_TO_SINK[ship.get('hull')] - ship.get('hits')
+                            if ship_life < weakest_ship_life:
+                                weakest_ship = ship.get('id')
+                                river = row - 1
+                                print([bridge + 1, row], weakest_ship)
+                                weakest_ship_life = ship_life
+                if weakest_ship != -1:
+                    print("shot decided!!")
+                    temp_dict = {'cannon': [bridge + 1, row], 'id': weakest_ship, 'river': river+1}
+                    shots_list.append(temp_dict)
+                    
+    return shots_list
