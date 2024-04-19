@@ -3,8 +3,11 @@
 import socket
 import sys
 from utils import *
+import struct
 
+MAX_ROUNDS = 10
 
+#GAS = 
 
 def main():
 
@@ -14,6 +17,8 @@ def main():
 
     host = sys.argv[1]
     port_offset = int(sys.argv[2])
+
+    
     gas = sys.argv[3]  # Group Authentication Sequence (GAS)
 
     print(gas)
@@ -25,8 +30,8 @@ def main():
 
     # AUTHENTICATION
     auth(gas, servers)
-    # for server in servers:
-    #     print(server)
+    for server in servers:
+        print(server)
     print("###########")
     # GETCANNONS
     cannons = get_cannons(gas, servers)
@@ -39,26 +44,63 @@ def main():
         print(row)
 
     print("###########")
-    # GETTURN
-    response = get_turn(gas, servers, 0)
-
+    
+    # initial ships table
     ships_table = [[[] for _ in range(8)] for _ in range(4)]
-    for i, resp in enumerate(response):
-        # print(resp)
-        bridge = resp.get('bridge')
-        ships = resp.get('ships')
-        ships_table[i][bridge-1] = ships
-    for row in ships_table:
-        print(row)
-    print("###########")
+    count = 0
+    while True:
 
-    shots_list = get_shots_list(cannons_table, ships_table)
+        # GETTURN
+        response = get_turn(gas, servers, 0)
 
-    print("###########")
-    for row in shots_list:
-        print(row)
-    # SHOT
-    response = shot(gas, servers, shots_list)
+        # GAMEOVER
+        for i, resp in enumerate(response):
+            if resp.get("type") == "gameover" :
+                print("GAMEOVER")
+                score = resp.get("score")
+                print(f"score: {score}")
+                
+                for server in servers:
+                    server.get("socket").close()
+                
+                return
+
+        
+        for i, resp in enumerate(response):
+            print(resp)
+            bridge = resp.get('bridge')
+            ships = resp.get('ships')
+            if ships:
+                ships_table[i][bridge-1].extend(ships)
+        for row in ships_table:
+            print(row)
+        print("###########")
+
+        shots_list = get_shots_list(cannons_table, ships_table)
+
+        print(shots_list)
+        print("###########")
+
+        if len(shots_list) != 0:
+            # SHOT
+            print("SHOT!")
+            response = []
+            response = shot(gas, servers, shots_list)
+            print("Shot response:")
+            print(response)
+            deal_damage(ships_table, response)
+            print("###########")
+
+
+        move_ships(ships_table)
+        
+
+        count += 1
+        if count >= MAX_ROUNDS: 
+            quit(gas, servers)
+            break
+        
+        
 
     for server in servers:
         server.get("socket").close()

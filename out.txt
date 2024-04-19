@@ -1,0 +1,115 @@
+###########
+[[2, 4], [3, 4], [7, 0], [2, 0], [2, 3], [8, 3], [2, 2], [8, 2]]
+[0, 1, 0, 0, 0, 0, 1, 0]
+[0, 0, 0, 0, 0, 0, 0, 0]
+[0, 1, 0, 0, 0, 0, 0, 1]
+[0, 1, 0, 0, 0, 0, 0, 1]
+[0, 1, 1, 0, 0, 0, 0, 0]
+###########
+[[{'id': 47659, 'hull': 'frigate', 'hits': 0}, {'id': 47656, 'hull': 'battleship', 'hits': 0}], [], [], [], [], [], [], []]
+[[], [], [], [], [], [], [], []]
+[[{'id': 47657, 'hull': 'destroyer', 'hits': 0}], [], [], [], [], [], [], []]
+[[{'id': 47658, 'hull': 'frigate', 'hits': 0}], [], [], [], [], [], [], []]
+###########
+[]
+###########
+[[], [{'id': 47659, 'hull': 'frigate', 'hits': 0}, {'id': 47656, 'hull': 'battleship', 'hits': 0}], [], [], [], [], [], []]
+[[], [], [], [], [], [], [], []]
+[[], [{'id': 47657, 'hull': 'destroyer', 'hits': 0}], [], [], [], [], [], []]
+[[], [{'id': 47658, 'hull': 'frigate', 'hits': 0}], [], [], [], [], [], []]
+###########
+ships found at [2, 0]
+[2, 0] 47659
+shot decided!!
+ships found at [2, 2]
+shot decided!!
+ships found at [2, 3]
+ships found at [2, 2]
+shot decided!!
+ships found at [2, 4]
+shot decided!!
+[{'cannon': [2, 0], 'id': 47659, 'river': 1}, {'cannon': [2, 2], 'id': 47657, 'river': 3}, {'cannon': [2, 3], 'id': 47658, 'river': 4}, {'cannon': [2, 4], 'id': 47658, 'river': 4}]
+###########
+SHOT!
+Cannon: [2, 0] 47659 0
+Cannon: [2, 2] 47657 2
+Cannon: [2, 3] 47658 3
+Cannon: [2, 4] 47658 3
+Shot response:
+[{'type': 'shotresp', 'auth': 'ifs4:1:2c3bb3f0e946a1afde7d9d0c8c818762a6189e842abd8aaaf85c9faac5b784d2+ifs4:2:cf87a60a90159078acecca4415c0331939ebb28ac5528322ac03d7c26b140b98+e51d06a4174b5385c8daff714827b4b4cb4f93ff1b83af86defee3878c2ae90f', 'id': 47659, 'cannon': [2, 0], 'status': 1, 'description': 'Ship not under bridge 2'}, {'type': 'shotresp', 'auth': 'ifs4:1:2c3bb3f0e946a1afde7d9d0c8c818762a6189e842abd8aaaf85c9faac5b784d2+ifs4:2:cf87a60a90159078acecca4415c0331939ebb28ac5528322ac03d7c26b140b98+e51d06a4174b5385c8daff714827b4b4cb4f93ff1b83af86defee3878c2ae90f', 'id': 47657, 'cannon': [2, 2], 'status': 1, 'description': 'Ship not under bridge 2'}, {'type': 'shotresp', 'auth': 'ifs4:1:2c3bb3f0e946a1afde7d9d0c8c818762a6189e842abd8aaaf85c9faac5b784d2+ifs4:2:cf87a60a90159078acecca4415c0331939ebb28ac5528322ac03d7c26b140b98+e51d06a4174b5385c8daff714827b4b4cb4f93ff1b83af86defee3878c2ae90f', 'id': 47658, 'cannon': [2, 3], 'status': 1, 'description': 'Ship not under bridge 2'}, {'type': 'shotresp', 'auth': 'ifs4:1:2c3bb3f0e946a1afde7d9d0c8c818762a6189e842abd8aaaf85c9faac5b784d2+ifs4:2:cf87a60a90159078acecca4415c0331939ebb28ac5528322ac03d7c26b140b98+e51d06a4174b5385c8daff714827b4b4cb4f93ff1b83af86defee3878c2ae90f', 'id': 47658, 'cannon': [2, 3], 'status': 1, 'description': 'Ship not under bridge 2'}]
+###########
+[[], [], [{'id': 47659, 'hull': 'frigate', 'hits': 0}, {'id': 47656, 'hull': 'battleship', 'hits': 0}], [], [], [], [], []]
+[[], [], [], [], [], [], [], []]
+[[], [], [{'id': 47657, 'hull': 'destroyer', 'hits': 0}], [], [], [], [], []]
+[[], [], [{'id': 47658, 'hull': 'frigate', 'hits': 0}], [], [], [], [], []]
+###########
+ships found at [3, 4]
+shot decided!!
+[{'cannon': [3, 4], 'id': 47658, 'river': 4}]
+###########
+SHOT!
+Cannon: [3, 4] 47658 3
+Shot response:
+[{'type': 'shotresp', 'auth': 'ifs4:1:2c3bb3f0e946a1afde7d9d0c8c818762a6189e842abd8aaaf85c9faac5b784d2+ifs4:2:cf87a60a90159078acecca4415c0331939ebb28ac5528322ac03d7c26b140b98+e51d06a4174b5385c8daff714827b4b4cb4f93ff1b83af86defee3878c2ae90f', 'id': 47658, 'cannon': [2, 3], 'status': 1, 'description': 'Ship not under bridge 2'}]
+###########
+[[], [], [], [{'id': 47659, 'hull': 'frigate', 'hits': 0}, {'id': 47656, 'hull': 'battleship', 'hits': 0}], [], [], [], []]
+[[], [], [], [], [], [], [], []]
+[[], [], [], [{'id': 47657, 'hull': 'destroyer', 'hits': 0}], [], [], [], []]
+[[], [], [], [{'id': 47658, 'hull': 'frigate', 'hits': 0}], [], [], [], []]
+###########
+[]
+###########
+[[], [], [], [], [{'id': 47659, 'hull': 'frigate', 'hits': 0}, {'id': 47656, 'hull': 'battleship', 'hits': 0}], [], [], []]
+[[], [], [], [], [], [], [], []]
+[[], [], [], [], [{'id': 47657, 'hull': 'destroyer', 'hits': 0}], [], [], []]
+[[], [], [], [], [{'id': 47658, 'hull': 'frigate', 'hits': 0}], [], [], []]
+###########
+[]
+###########
+[[], [], [], [], [], [{'id': 47659, 'hull': 'frigate', 'hits': 0}, {'id': 47656, 'hull': 'battleship', 'hits': 0}], [], []]
+[[], [], [], [], [], [], [], []]
+[[], [], [], [], [], [{'id': 47657, 'hull': 'destroyer', 'hits': 0}], [], []]
+[[], [], [], [], [], [{'id': 47658, 'hull': 'frigate', 'hits': 0}], [], []]
+###########
+[]
+###########
+[[], [], [], [], [], [], [{'id': 47659, 'hull': 'frigate', 'hits': 0}, {'id': 47656, 'hull': 'battleship', 'hits': 0}], []]
+[[], [], [], [], [], [], [], []]
+[[], [], [], [], [], [], [{'id': 47657, 'hull': 'destroyer', 'hits': 0}], []]
+[[], [], [], [], [], [], [{'id': 47658, 'hull': 'frigate', 'hits': 0}], []]
+###########
+ships found at [7, 0]
+[7, 0] 47659
+shot decided!!
+[{'cannon': [7, 0], 'id': 47659, 'river': 1}]
+###########
+SHOT!
+Cannon: [7, 0] 47659 0
+Shot response:
+[{'type': 'shotresp', 'auth': 'ifs4:1:2c3bb3f0e946a1afde7d9d0c8c818762a6189e842abd8aaaf85c9faac5b784d2+ifs4:2:cf87a60a90159078acecca4415c0331939ebb28ac5528322ac03d7c26b140b98+e51d06a4174b5385c8daff714827b4b4cb4f93ff1b83af86defee3878c2ae90f', 'id': 47659, 'cannon': [2, 0], 'status': 1, 'description': 'Ship not under bridge 2'}]
+###########
+[[], [], [], [], [], [], [], [{'id': 47659, 'hull': 'frigate', 'hits': 0}, {'id': 47656, 'hull': 'battleship', 'hits': 0}]]
+[[], [], [], [], [], [], [], []]
+[[], [], [], [], [], [], [], [{'id': 47657, 'hull': 'destroyer', 'hits': 0}]]
+[[], [], [], [], [], [], [], [{'id': 47658, 'hull': 'frigate', 'hits': 0}]]
+###########
+ships found at [8, 2]
+shot decided!!
+ships found at [8, 3]
+ships found at [8, 2]
+shot decided!!
+[{'cannon': [8, 2], 'id': 47657, 'river': 3}, {'cannon': [8, 3], 'id': 47658, 'river': 4}]
+###########
+SHOT!
+Cannon: [8, 2] 47657 2
+Cannon: [8, 3] 47658 3
+Shot response:
+[{'type': 'shotresp', 'auth': 'ifs4:1:2c3bb3f0e946a1afde7d9d0c8c818762a6189e842abd8aaaf85c9faac5b784d2+ifs4:2:cf87a60a90159078acecca4415c0331939ebb28ac5528322ac03d7c26b140b98+e51d06a4174b5385c8daff714827b4b4cb4f93ff1b83af86defee3878c2ae90f', 'id': 47657, 'cannon': [2, 2], 'status': 1, 'description': 'Ship not under bridge 2'}, {'type': 'shotresp', 'auth': 'ifs4:1:2c3bb3f0e946a1afde7d9d0c8c818762a6189e842abd8aaaf85c9faac5b784d2+ifs4:2:cf87a60a90159078acecca4415c0331939ebb28ac5528322ac03d7c26b140b98+e51d06a4174b5385c8daff714827b4b4cb4f93ff1b83af86defee3878c2ae90f', 'id': 47658, 'cannon': [2, 3], 'status': 1, 'description': 'Ship not under bridge 2'}]
+###########
+[[], [], [], [], [], [], [], []]
+[[], [], [], [], [], [], [], []]
+[[], [], [], [], [], [], [], []]
+[[], [], [], [], [], [], [], []]
+###########
+[]
+###########
