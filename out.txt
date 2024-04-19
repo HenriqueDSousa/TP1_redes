@@ -1,115 +1,29 @@
+{'address': ('pugna.snes.dcc.ufmg.br', 51111), 'id': 0, 'socket': <socket.socket fd=3, family=AddressFamily.AF_INET, type=SocketKind.SOCK_DGRAM, proto=0, laddr=('0.0.0.0', 51789)>, 'river': 1}
+{'address': ('pugna.snes.dcc.ufmg.br', 51112), 'id': 1, 'socket': <socket.socket fd=4, family=AddressFamily.AF_INET, type=SocketKind.SOCK_DGRAM, proto=0, laddr=('0.0.0.0', 35924)>, 'river': 2}
+{'address': ('pugna.snes.dcc.ufmg.br', 51113), 'id': 2, 'socket': <socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_DGRAM, proto=0, laddr=('0.0.0.0', 38676)>, 'river': 3}
+{'address': ('pugna.snes.dcc.ufmg.br', 51114), 'id': 3, 'socket': <socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_DGRAM, proto=0, laddr=('0.0.0.0', 53623)>, 'river': 4}
 ###########
-[[2, 4], [3, 4], [7, 0], [2, 0], [2, 3], [8, 3], [2, 2], [8, 2]]
-[0, 1, 0, 0, 0, 0, 1, 0]
-[0, 0, 0, 0, 0, 0, 0, 0]
-[0, 1, 0, 0, 0, 0, 0, 1]
-[0, 1, 0, 0, 0, 0, 0, 1]
-[0, 1, 1, 0, 0, 0, 0, 0]
+[[4, 4], [1, 2], [6, 1], [6, 4], [4, 2], [7, 3], [5, 0], [3, 2]]
+[0, 0, 0, 0, 1, 0, 0, 0]
+[0, 0, 0, 0, 0, 1, 0, 0]
+[1, 0, 1, 1, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 1, 0]
+[0, 0, 0, 1, 0, 1, 0, 0]
 ###########
-[[{'id': 47659, 'hull': 'frigate', 'hits': 0}, {'id': 47656, 'hull': 'battleship', 'hits': 0}], [], [], [], [], [], [], []]
+4
+[[{'type': 'state', 'turn': 0, 'bridge': 1, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 2, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 3, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 4, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 5, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 6, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 7, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 8, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}], [{}, {'type': 'state', 'turn': 0, 'bridge': 1, 'ships': [{'id': 53851, 'hull': 'battleship', 'hits': 0}, {'id': 53849, 'hull': 'battleship', 'hits': 0}], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 2, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 3, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 4, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 5, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 6, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 7, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 8, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}], [{}, {}, {'type': 'state', 'turn': 0, 'bridge': 1, 'ships': [{'id': 53850, 'hull': 'frigate', 'hits': 0}], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 2, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 3, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 4, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 5, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 6, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 7, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 8, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}], [{}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 1, 'ships': [{'id': 53848, 'hull': 'frigate', 'hits': 0}], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 2, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 3, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 4, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 5, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 6, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 7, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 0, 'bridge': 8, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}]]
+32
+32
+32
+32
 [[], [], [], [], [], [], [], []]
-[[{'id': 47657, 'hull': 'destroyer', 'hits': 0}], [], [], [], [], [], [], []]
-[[{'id': 47658, 'hull': 'frigate', 'hits': 0}], [], [], [], [], [], [], []]
+[[{'id': 53851, 'hull': 'battleship', 'hits': 0}, {'id': 53849, 'hull': 'battleship', 'hits': 0}], [], [], [], [], [], [], []]
+[[{'id': 53850, 'hull': 'frigate', 'hits': 0}], [], [], [], [], [], [], []]
+[[{'id': 53848, 'hull': 'frigate', 'hits': 0}], [], [], [], [], [], [], []]
 ###########
-[]
-###########
-[[], [{'id': 47659, 'hull': 'frigate', 'hits': 0}, {'id': 47656, 'hull': 'battleship', 'hits': 0}], [], [], [], [], [], []]
-[[], [], [], [], [], [], [], []]
-[[], [{'id': 47657, 'hull': 'destroyer', 'hits': 0}], [], [], [], [], [], []]
-[[], [{'id': 47658, 'hull': 'frigate', 'hits': 0}], [], [], [], [], [], []]
-###########
-ships found at [2, 0]
-[2, 0] 47659
-shot decided!!
-ships found at [2, 2]
-shot decided!!
-ships found at [2, 3]
-ships found at [2, 2]
-shot decided!!
-ships found at [2, 4]
-shot decided!!
-[{'cannon': [2, 0], 'id': 47659, 'river': 1}, {'cannon': [2, 2], 'id': 47657, 'river': 3}, {'cannon': [2, 3], 'id': 47658, 'river': 4}, {'cannon': [2, 4], 'id': 47658, 'river': 4}]
-###########
-SHOT!
-Cannon: [2, 0] 47659 0
-Cannon: [2, 2] 47657 2
-Cannon: [2, 3] 47658 3
-Cannon: [2, 4] 47658 3
-Shot response:
-[{'type': 'shotresp', 'auth': 'ifs4:1:2c3bb3f0e946a1afde7d9d0c8c818762a6189e842abd8aaaf85c9faac5b784d2+ifs4:2:cf87a60a90159078acecca4415c0331939ebb28ac5528322ac03d7c26b140b98+e51d06a4174b5385c8daff714827b4b4cb4f93ff1b83af86defee3878c2ae90f', 'id': 47659, 'cannon': [2, 0], 'status': 1, 'description': 'Ship not under bridge 2'}, {'type': 'shotresp', 'auth': 'ifs4:1:2c3bb3f0e946a1afde7d9d0c8c818762a6189e842abd8aaaf85c9faac5b784d2+ifs4:2:cf87a60a90159078acecca4415c0331939ebb28ac5528322ac03d7c26b140b98+e51d06a4174b5385c8daff714827b4b4cb4f93ff1b83af86defee3878c2ae90f', 'id': 47657, 'cannon': [2, 2], 'status': 1, 'description': 'Ship not under bridge 2'}, {'type': 'shotresp', 'auth': 'ifs4:1:2c3bb3f0e946a1afde7d9d0c8c818762a6189e842abd8aaaf85c9faac5b784d2+ifs4:2:cf87a60a90159078acecca4415c0331939ebb28ac5528322ac03d7c26b140b98+e51d06a4174b5385c8daff714827b4b4cb4f93ff1b83af86defee3878c2ae90f', 'id': 47658, 'cannon': [2, 3], 'status': 1, 'description': 'Ship not under bridge 2'}, {'type': 'shotresp', 'auth': 'ifs4:1:2c3bb3f0e946a1afde7d9d0c8c818762a6189e842abd8aaaf85c9faac5b784d2+ifs4:2:cf87a60a90159078acecca4415c0331939ebb28ac5528322ac03d7c26b140b98+e51d06a4174b5385c8daff714827b4b4cb4f93ff1b83af86defee3878c2ae90f', 'id': 47658, 'cannon': [2, 3], 'status': 1, 'description': 'Ship not under bridge 2'}]
-###########
-[[], [], [{'id': 47659, 'hull': 'frigate', 'hits': 0}, {'id': 47656, 'hull': 'battleship', 'hits': 0}], [], [], [], [], []]
-[[], [], [], [], [], [], [], []]
-[[], [], [{'id': 47657, 'hull': 'destroyer', 'hits': 0}], [], [], [], [], []]
-[[], [], [{'id': 47658, 'hull': 'frigate', 'hits': 0}], [], [], [], [], []]
-###########
-ships found at [3, 4]
-shot decided!!
-[{'cannon': [3, 4], 'id': 47658, 'river': 4}]
-###########
-SHOT!
-Cannon: [3, 4] 47658 3
-Shot response:
-[{'type': 'shotresp', 'auth': 'ifs4:1:2c3bb3f0e946a1afde7d9d0c8c818762a6189e842abd8aaaf85c9faac5b784d2+ifs4:2:cf87a60a90159078acecca4415c0331939ebb28ac5528322ac03d7c26b140b98+e51d06a4174b5385c8daff714827b4b4cb4f93ff1b83af86defee3878c2ae90f', 'id': 47658, 'cannon': [2, 3], 'status': 1, 'description': 'Ship not under bridge 2'}]
-###########
-[[], [], [], [{'id': 47659, 'hull': 'frigate', 'hits': 0}, {'id': 47656, 'hull': 'battleship', 'hits': 0}], [], [], [], []]
-[[], [], [], [], [], [], [], []]
-[[], [], [], [{'id': 47657, 'hull': 'destroyer', 'hits': 0}], [], [], [], []]
-[[], [], [], [{'id': 47658, 'hull': 'frigate', 'hits': 0}], [], [], [], []]
-###########
-[]
-###########
-[[], [], [], [], [{'id': 47659, 'hull': 'frigate', 'hits': 0}, {'id': 47656, 'hull': 'battleship', 'hits': 0}], [], [], []]
-[[], [], [], [], [], [], [], []]
-[[], [], [], [], [{'id': 47657, 'hull': 'destroyer', 'hits': 0}], [], [], []]
-[[], [], [], [], [{'id': 47658, 'hull': 'frigate', 'hits': 0}], [], [], []]
-###########
-[]
-###########
-[[], [], [], [], [], [{'id': 47659, 'hull': 'frigate', 'hits': 0}, {'id': 47656, 'hull': 'battleship', 'hits': 0}], [], []]
-[[], [], [], [], [], [], [], []]
-[[], [], [], [], [], [{'id': 47657, 'hull': 'destroyer', 'hits': 0}], [], []]
-[[], [], [], [], [], [{'id': 47658, 'hull': 'frigate', 'hits': 0}], [], []]
-###########
-[]
-###########
-[[], [], [], [], [], [], [{'id': 47659, 'hull': 'frigate', 'hits': 0}, {'id': 47656, 'hull': 'battleship', 'hits': 0}], []]
-[[], [], [], [], [], [], [], []]
-[[], [], [], [], [], [], [{'id': 47657, 'hull': 'destroyer', 'hits': 0}], []]
-[[], [], [], [], [], [], [{'id': 47658, 'hull': 'frigate', 'hits': 0}], []]
-###########
-ships found at [7, 0]
-[7, 0] 47659
-shot decided!!
-[{'cannon': [7, 0], 'id': 47659, 'river': 1}]
-###########
-SHOT!
-Cannon: [7, 0] 47659 0
-Shot response:
-[{'type': 'shotresp', 'auth': 'ifs4:1:2c3bb3f0e946a1afde7d9d0c8c818762a6189e842abd8aaaf85c9faac5b784d2+ifs4:2:cf87a60a90159078acecca4415c0331939ebb28ac5528322ac03d7c26b140b98+e51d06a4174b5385c8daff714827b4b4cb4f93ff1b83af86defee3878c2ae90f', 'id': 47659, 'cannon': [2, 0], 'status': 1, 'description': 'Ship not under bridge 2'}]
-###########
-[[], [], [], [], [], [], [], [{'id': 47659, 'hull': 'frigate', 'hits': 0}, {'id': 47656, 'hull': 'battleship', 'hits': 0}]]
-[[], [], [], [], [], [], [], []]
-[[], [], [], [], [], [], [], [{'id': 47657, 'hull': 'destroyer', 'hits': 0}]]
-[[], [], [], [], [], [], [], [{'id': 47658, 'hull': 'frigate', 'hits': 0}]]
-###########
-ships found at [8, 2]
-shot decided!!
-ships found at [8, 3]
-ships found at [8, 2]
-shot decided!!
-[{'cannon': [8, 2], 'id': 47657, 'river': 3}, {'cannon': [8, 3], 'id': 47658, 'river': 4}]
-###########
-SHOT!
-Cannon: [8, 2] 47657 2
-Cannon: [8, 3] 47658 3
-Shot response:
-[{'type': 'shotresp', 'auth': 'ifs4:1:2c3bb3f0e946a1afde7d9d0c8c818762a6189e842abd8aaaf85c9faac5b784d2+ifs4:2:cf87a60a90159078acecca4415c0331939ebb28ac5528322ac03d7c26b140b98+e51d06a4174b5385c8daff714827b4b4cb4f93ff1b83af86defee3878c2ae90f', 'id': 47657, 'cannon': [2, 2], 'status': 1, 'description': 'Ship not under bridge 2'}, {'type': 'shotresp', 'auth': 'ifs4:1:2c3bb3f0e946a1afde7d9d0c8c818762a6189e842abd8aaaf85c9faac5b784d2+ifs4:2:cf87a60a90159078acecca4415c0331939ebb28ac5528322ac03d7c26b140b98+e51d06a4174b5385c8daff714827b4b4cb4f93ff1b83af86defee3878c2ae90f', 'id': 47658, 'cannon': [2, 3], 'status': 1, 'description': 'Ship not under bridge 2'}]
-###########
-[[], [], [], [], [], [], [], []]
-[[], [], [], [], [], [], [], []]
-[[], [], [], [], [], [], [], []]
-[[], [], [], [], [], [], [], []]
-###########
-[]
-###########
+4
+[[{'type': 'state', 'turn': 1, 'bridge': 1, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 2, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 3, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 4, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 5, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 6, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 7, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 8, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}], [{}, {'type': 'state', 'turn': 1, 'bridge': 1, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 2, 'ships': [{'id': 53851, 'hull': 'battleship', 'hits': 0}, {'id': 53849, 'hull': 'battleship', 'hits': 0}], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 3, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 4, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 5, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 6, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 7, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 8, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}], [{}, {}, {'type': 'state', 'turn': 1, 'bridge': 1, 'ships': [{'id': 53854, 'hull': 'battleship', 'hits': 0}, {'id': 53852, 'hull': 'battleship', 'hits': 0}], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 2, 'ships': [{'id': 53850, 'hull': 'frigate', 'hits': 0}], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 3, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 4, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 5, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 6, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 7, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 8, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}], [{}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 1, 'ships': [{'id': 53855, 'hull': 'destroyer', 'hits': 0}, {'id': 53853, 'hull': 'frigate', 'hits': 0}], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 2, 'ships': [{'id': 53848, 'hull': 'frigate', 'hits': 0}], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 3, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 4, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 5, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 6, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 7, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}, {}, {}, {}, {'type': 'state', 'turn': 1, 'bridge': 8, 'ships': [], 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7'}]]
+32
+32
+32
+32

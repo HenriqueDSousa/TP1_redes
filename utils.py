@@ -136,22 +136,41 @@ def get_turn(gas, servers, turn):
     max_tries = 3
     count = 0
 
-    send_to_servers(servers, json_data)
-    responses = receive_from_servers(servers)
-    empty_responses = get_empty_response(responses)
+    # responses template to all 4 servers
+    responses = [[], [], [], []]
 
-    while len(empty_responses) != 0 and count < max_tries:
-        temp_servers = [server for server in servers if server['id'] in empty_responses]
-        send_to_servers(temp_servers, json_data)
-        temp_response = receive_from_servers(temp_servers)
-        for i in empty_responses:
-            responses[i] = temp_response[i]
-        empty_responses = get_empty_response(responses)
-        count+=1
-    empty_responses = get_empty_response(responses)
+    for server in range(len(servers)):
 
-    if len(empty_responses) != 0:
-        logexit(f"Failed to get all turns from servers {empty_responses}")
+        # sending to each server
+        send_to_servers([servers[server]], json_data)
+        
+        response = []
+
+        # getting the 8 bridges info
+        for _ in range(8):
+            resp = (receive_from_servers([servers[server]])[server])
+            
+            #check if response is empty
+            empty_resp = get_empty_response(resp)
+           
+            
+            while len(empty_resp) != 0 and count < max_tries:
+                
+                # sending again to server
+                send_to_servers([servers[server]], json_data)
+                resp = (receive_from_servers([servers[server]])[server])
+
+                empty_resp = get_empty_response(resp)
+                count+=1
+
+            if len(empty_resp) != 0:
+                logexit(f"Failed to get all turns from servers {empty_resp}")
+
+            
+            response.append(resp)
+
+        responses[server] = response
+
     return responses
 
 def shot(gas, servers, shots_list):
@@ -173,17 +192,20 @@ def shot(gas, servers, shots_list):
         
         json_data = json.dumps(data)
         send_to_servers([servers[server]], json_data)
-
+        print("shot sent")
         server_id = servers[server].get('id')
 
         response = {}
 
         while response.get("type") != "shotresp":
-            print(response)
-            time.sleep(1)
+            # print(response)
             send_to_servers([servers[server]], json_data)
+            time.sleep(1)
             responses = receive_from_servers([servers[server]])
+            time.sleep(1)
             response = responses[server_id]
+
+        print(response)
 
         if response.get("type") != "shotresp":
             print(f"Received non-shotresp response from server {server_id}: {response}")
@@ -265,7 +287,6 @@ def get_shots_list(cannons_table, ships_table):
                 if weakest_ship != -1:
                     print("shot decided!!")
                     temp_dict = {'cannon': [(bridge + 1), row], 'id': weakest_ship, 'river': river+1}
-                    
                     shots_list.append(temp_dict)
 
     return shots_list
@@ -284,22 +305,21 @@ def move_ships(ships_table):
 
 
 
-def deal_damage(ships_table, shot_response):
+def deal_damage(ships_table, shot_list):
 
-    for response in shot_response:
+    for shot in shot_list:
+        ship_id = shot.get("id")
+        for i in range(4):
+            for j in range(8): 
+                
+                for ship in ships_table[i][j]:
 
-        if response.get("status") == 0:
-            for i in range(4):
-                for j in range(8):
-                    for ship in ships_table[i][j]:
+                    if ship_id == ship.get("id"):
                         
-                        ship_id = ship.get("id")
-                        if ship_id == response.get("id"):
-                                
-                                ship["hits"] += 1
-                                
-                                # if the ship was destroyed
-                                if SHOTS_TO_SINK[ship.get('hull')] == ship.get("hits"):
-                                    
-                                    print(f"ship {ship_id} destroyed")
-                                    ships_table[i][j].remove(ship)
+                        ship["hits"] += 1
+                        
+                        # if the ship was destroyed
+                        if SHOTS_TO_SINK[ship.get('hull')] == ship.get("hits"):
+                            
+                            print(f"ship {ship_id} destroyed")
+                            ships_table[i][j].remove(ship)
