@@ -5,7 +5,14 @@ import sys
 from utils import *
 import struct
 
-MAX_TURNS = 4
+
+
+MAX_TURNS = 10
+SHOTS_TO_SINK = {
+    'frigate': 1,
+    'destroyer': 2,
+    'battleship': 3
+}
 
 #GAS = 2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7
 
@@ -83,12 +90,28 @@ def main():
         shots_list = get_shots_list(cannons_table, ships_table)
 
         print(shots_list)
+
+        for shoot in shots_list:
+            for row in range(4):
+                for bridge in range(8):
+                    for ship in ships_table[row][bridge]:
+                        ship_id = ship.get("id")
+
+                        if ship_id == shoot.get("id"):
+                            ship_life = SHOTS_TO_SINK[ship.get('hull')] - ship.get('hits') - 1
+                            print(f"Ship {ship_id} shot on { [bridge+1, row+1]}. Life = {ship_life}")
+        
         print("###########")
+
+
 
         if len(shots_list) != 0:
             # SHOT
             print("SHOT!")
             shot(gas, servers, shots_list)
+
+            
+                        
             # deal_damage(ships_table, shots_list)
             # response = []
             # response = shot(gas, servers, shots_list)
