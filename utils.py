@@ -22,8 +22,8 @@ def send_to_servers(servers, json_data):
     Function to send the same message to all servers
     """
     for server in servers:
-        address = server.get('address')
-        sock = server.get('socket')
+        address = server.address
+        sock = server.sock
         try:
             sock.sendto(json_data.encode(), address)
         except socket.error as e:
@@ -35,16 +35,16 @@ def receive_from_servers(servers):
     """
     responses = [{}, {}, {}, {}]
     for server in servers:
-        sock = server.get('socket')
-        id = server.get('id')
+        sock = server.sock
+        id = server.id
         try:
             response, _ = sock.recvfrom(1024)
             response = json.loads(response.decode())
             responses[id] = response
         except (socket.timeout, json.decoder.JSONDecodeError) as e:
             print(f"Error receiving response from server {id}: {e}")
-            print(f"Received response: {response}")
-            responses[id] = {}  # Empty response or handle error as appropriate
+            # print(f"Received response: {response}")
+            # responses[id] = {}  # Empty response or handle error as appropriate
 
     return responses
 
@@ -80,7 +80,7 @@ def auth(gas, servers):
     empty_responses = get_empty_response(responses)
 
     while len(empty_responses) != 0 and count < max_tries:
-        temp_servers = [server for server in servers if server['id'] in empty_responses]
+        temp_servers = [server for server in servers if server.id in empty_responses]
         send_to_servers(temp_servers, json_data)
         temp_response = receive_from_servers(temp_servers)
         for i in empty_responses:
@@ -94,7 +94,7 @@ def auth(gas, servers):
     for i, response in enumerate(responses):
         if response.get('status', -1) != 0:
             logexit("Invalid GAS")
-        servers[i]['river'] = response.get('river')
+        servers[i].river = response.get('river')
 
 def get_cannons(gas, servers):
     data = {
@@ -173,7 +173,7 @@ def get_turn(gas, servers, turn):
 
     return responses
 
-def shot(gas, servers, shots_list):
+def send_shot(gas, servers, shots_list):
     
     all_responses = []
     for shot in shots_list:
@@ -193,7 +193,7 @@ def shot(gas, servers, shots_list):
         json_data = json.dumps(data)
         send_to_servers([servers[server]], json_data)
         # print("shot sent")
-        server_id = servers[server].get('id')
+        server_id = servers[server].id
 
         response = {}
 
@@ -213,6 +213,13 @@ def shot(gas, servers, shots_list):
     return all_responses
    
 
+def ship_can_be_shot(ship_id, ships_shotted, ship_life):
+    if ship_id in ships_shotted.keys():
+        if ships_shotted[ship_id] >= ship_life:
+            return False
+    return True
+            
+
 def get_shots_list(cannons_table, ships_table):
 
     """
@@ -222,73 +229,68 @@ def get_shots_list(cannons_table, ships_table):
 
 
     shots_list = []
+    ships_shotted = {}
     for row in range(5):
         for bridge in range(8):
 
+            river = -1
+            weakest_ship_life = 1000
+            weakest_ship = -1
             if cannons_table[row][bridge] == 1:
-                
-            
-                river = -1
-                weakest_ship_life = 1000
-                weakest_ship = -1
-                
+
                 # fiding a ship
                 if row == 0:
 
                     # If the cannon is in row 0 it only shots river 1
-                    if ships_table[row][bridge] != []:
-                        # print(f"ships found at [{bridge+1}, {row}]")
-                        for ship in ships_table[row][bridge]:
-                            ship_life = SHOTS_TO_SINK[ship.get('hull')] - ship.get('hits')
-                            
-                            if ship_life < weakest_ship_life:
-                                weakest_ship = ship.get('id')
-                                river = row
-                                print([bridge + 1, row], weakest_ship)
-                                weakest_ship_life = ship_life
+                    for ship in ships_table[row][bridge]:
+                        ship_life = SHOTS_TO_SINK[ship.get('hull')] - ship.get('hits')
+                        ship_id = ship.get('id')
+
+                        if ship_life < weakest_ship_life and ship_can_be_shot(ship_id, ships_shotted, ship_life):
+                            weakest_ship = ship.get('id')
+                            river = row
+                            print([bridge + 1, row], weakest_ship)
+                            weakest_ship_life = ship_life
                 
                 # if ship is between row 4 and 0, it can shot both adjacent rivers
                 elif row < 4 and row > 0:
-                    
-                    
-                    if ships_table[row][bridge] != []:
-                        # print(f"ships found at [{bridge+1}, {row}]")
-                        for ship in ships_table[row][bridge]:
-                            ship_life = SHOTS_TO_SINK[ship.get('hull')] - ship.get('hits')
-                            
-                            if ship_life < weakest_ship_life:
-                                weakest_ship = ship.get('id')
-                                river = row
-                            
-                                weakest_ship_life = ship_life
+                    for ship in ships_table[row][bridge]:
+                        ship_life = SHOTS_TO_SINK[ship.get('hull')] - ship.get('hits')
+                        ship_id = ship.get('id')
 
-                    if ships_table[row-1][bridge] != []:
-                        # print(f"ships found at [{bridge+1}, {row-1}]")
-                        for ship in ships_table[row][bridge]:
-                            ship_life = SHOTS_TO_SINK[ship.get('hull')] - ship.get('hits')
-                            
-                            if ship_life < weakest_ship_life:
-                                weakest_ship = ship.get('id')
-                                river = row-1
-                        
-                                weakest_ship_life = ship_life
+                        if ship_life < weakest_ship_life and ship_can_be_shot(ship_id, ships_shotted, ship_life):
+                            weakest_ship = ship.get('id')
+                            river = row
+                            weakest_ship_life = ship_life
+
+                    for ship in ships_table[row-1][bridge]:
+                        ship_life = SHOTS_TO_SINK[ship.get('hull')] - ship.get('hits')
+                        ship_id = ship.get('id')
+
+                        if ship_life < weakest_ship_life and ship_can_be_shot(ship_id, ships_shotted, ship_life):
+                            weakest_ship = ship.get('id')
+                            river = row-1
+                            print([bridge + 1, row-1], weakest_ship)
+                            weakest_ship_life = ship_life
                 
                 # if ship is in row 4 it can shot only in river 4
                 elif row  == 4:
-                    if ships_table[row-1][bridge] != []:
-                        # print(f"ships found at [{bridge+1}, {row}]")
-                        for ship in ships_table[row-1][bridge]:
-                            ship_life = SHOTS_TO_SINK[ship.get('hull')] - ship.get('hits')
-                            
-                            if ship_life < weakest_ship_life:
-                                weakest_ship = ship.get('id')
-                                river = row - 1
-            
-                                weakest_ship_life = ship_life
+                    # print(f"ships found at [{bridge+1}, {row}]")
+                    for ship in ships_table[row-1][bridge]:
+                        ship_life = SHOTS_TO_SINK[ship.get('hull')] - ship.get('hits')
+                        ship_id = ship.get('id')
+                        if ship_life < weakest_ship_life and ship_can_be_shot(ship_id, ships_shotted, ship_life):
+                            weakest_ship = ship.get('id')
+                            river = row - 1
+                            print([bridge + 1, row-1], weakest_ship)
+                            weakest_ship_life = ship_life
 
                 if weakest_ship != -1:
-                    print("shot decided!!")
-                    temp_dict = {'cannon': [(bridge + 1), row], 'id': weakest_ship, 'river': river+1}
+                    if weakest_ship in ships_shotted.keys():
+                        ships_shotted[weakest_ship] += 1
+                    else:
+                        ships_shotted[weakest_ship] = 1
+                    temp_dict = {'cannon': [bridge+1, row], 'id': weakest_ship, 'river': river+1}
                     shots_list.append(temp_dict)
 
 

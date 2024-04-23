@@ -7,14 +7,28 @@ import struct
 
 
 
-MAX_TURNS = 10
+MAX_TURNS = 20
 SHOTS_TO_SINK = {
     'frigate': 1,
     'destroyer': 2,
     'battleship': 3
 }
-
+#GAS = teste:42:01b6e855db069213ebe27fbd0f4154ee46f6991919b5bc63ca72433d907d08a4+c37e8a64ccde01926cfc1fcf2052df18c1189f3386197e21d8c9e8f1bfb3c22e
 #GAS = 2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7
+
+class Server:
+    
+    def __init__(self, host, port, id, sock):
+        self.address = (host, port)
+        self.id = id
+        self.sock = sock
+        self.river = -1
+    
+    def set_river(self, river):
+        self.river = river
+
+    def __str__(self):
+        return f"Server {self.id}:\n\tAddress: ({self.address})\n\tRiver: {self.river}"
 
 def main():
 
@@ -22,18 +36,18 @@ def main():
         usage()
         exit(1)
 
-    host = sys.argv[1]
+    host = socket.gethostbyname(sys.argv[1])
     port_offset = int(sys.argv[2])
 
-    
+    ipv = socket.AF_INET if ':' not in host else socket.AF_INET6
     gas = sys.argv[3]  # Group Authentication Sequence (GAS)
 
     print(gas)
     # Creating sockets for each server
-    servers = [{"address": (host, port_offset+i), "id": i, "socket": socket.socket(socket.AF_INET, socket.SOCK_DGRAM)} for i in range(4)]
+    servers = [Server(host, port_offset+i, i, socket.socket(ipv, socket.SOCK_DGRAM)) for i in range(4)]
 
     for server in servers:
-        server.get('socket').settimeout(1)
+        server.sock.settimeout(1)
 
     # AUTHENTICATION
     auth(gas, servers)
@@ -52,7 +66,7 @@ def main():
 
     print("###########")
     
-    # initial ships table
+    # # initial ships table
     
     turn = 0
     while True:
@@ -90,17 +104,9 @@ def main():
         shots_list = get_shots_list(cannons_table, ships_table)
 
         print(shots_list)
+        for shot in shots_list:
+            print(f"Cannon {shot.get('cannon')} shot ship {shot.get('id')} at river {shot.get('river')}")    
 
-        for shoot in shots_list:
-            for row in range(4):
-                for bridge in range(8):
-                    for ship in ships_table[row][bridge]:
-                        ship_id = ship.get("id")
-
-                        if ship_id == shoot.get("id"):
-                            ship_life = SHOTS_TO_SINK[ship.get('hull')] - ship.get('hits') - 1
-                            print(f"Ship {ship_id} shot on { [bridge+1, row+1]}. Life = {ship_life}")
-        
         print("###########")
 
 
@@ -108,7 +114,7 @@ def main():
         if len(shots_list) != 0:
             # SHOT
             print("SHOT!")
-            shot(gas, servers, shots_list)
+            send_shot(gas, servers, shots_list)
 
             
                         
@@ -127,10 +133,10 @@ def main():
             quit(gas, servers)
             break
         
-        time.sleep(5)
+        time.sleep(3)
         
     for server in servers:
-        server.get("socket").close()
+        server.sock.close()
 
     return
 
