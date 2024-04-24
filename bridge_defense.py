@@ -73,7 +73,7 @@ def main():
 
         # GETTURN
         responses = get_turn(gas, servers, turn)
-
+    
         # GAMEOVER
         for response in responses:
             for resp in response:
@@ -90,12 +90,13 @@ def main():
         ships_table = [[[] for _ in range(8)] for _ in range(4)]
         for i, response in enumerate(responses):
             for resp in (response):
-                
+                # print(resp)
                 if resp.get("type") == "state" :
-                    bridge = resp.get('bridge')
-                    ships = resp.get('ships')
-                    if ships:
-                        ships_table[i][bridge-1].extend(ships)
+                    if resp.get("turn") == turn:
+                        bridge = resp.get('bridge')
+                        ships = resp.get('ships')
+                        if ships:
+                            ships_table[i][bridge-1].extend(ships)
 
         for row in ships_table:
             print(row)
@@ -118,12 +119,12 @@ def main():
 
             
                         
-            # deal_damage(ships_table, shots_list)
+            deal_damage(ships_table, shots_list)
             # response = []
             # response = shot(gas, servers, shots_list)
             # print("Shot response:")
             # print(response)
-            # deal_damage(ships_table, response)
+            
             print("###########")
         
         

@@ -134,25 +134,31 @@ def get_turn(gas, servers, turn):
 
     json_data = json.dumps(data)
     max_tries = 3
-    count = 0
+    
 
     # responses template to all 4 servers
     responses = [[], [], [], []]
+
 
     for server in range(len(servers)):
 
         # sending to each server
         send_to_servers([servers[server]], json_data)
-        
+        count = 0
         response = []
-
+        
+        bridges = [0, 0, 0, 0, 0, 0, 0, 0]
         # getting the 8 bridges info
-        for _ in range(8):
+
+        while(True):
+
+            if all(elem != 0 for elem in bridges):
+                break
+
             resp = (receive_from_servers([servers[server]])[server])
             
             #check if response is empty
             empty_resp = get_empty_response(resp)
-           
             
             while len(empty_resp) != 0 and count < max_tries:
                 
@@ -166,6 +172,8 @@ def get_turn(gas, servers, turn):
             if len(empty_resp) != 0:
                 logexit(f"Failed to get all turns from servers {empty_resp}")
 
+            if resp.get("type") == "state" and resp.get("turn") == turn:
+                bridges[resp.get("bridge")-1] = 1
             
             response.append(resp)
 
@@ -194,14 +202,13 @@ def send_shot(gas, servers, shots_list):
         send_to_servers([servers[server]], json_data)
         # print("shot sent")
         server_id = servers[server].id
-
+    
         response = {}
 
-        while response.get("type") != "shotresp":
-            time.sleep(1)
-            send_to_servers([servers[server]], json_data)
-            responses = receive_from_servers([servers[server]])
-            response = responses[server_id]
+        while response.get("type") != "shotresp" or response.get("id") != shot.get("id"):
+                send_to_servers([servers[server]], json_data)
+                responses = receive_from_servers([servers[server]])
+                response = responses[server_id]
 
         print(response)
 
