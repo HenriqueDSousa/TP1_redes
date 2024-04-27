@@ -7,7 +7,7 @@ import struct
 
 
 
-MAX_TURNS = 20
+MAX_TURNS = 0
 SHOTS_TO_SINK = {
     'frigate': 1,
     'destroyer': 2,
@@ -15,6 +15,8 @@ SHOTS_TO_SINK = {
 }
 #GAS = teste:42:01b6e855db069213ebe27fbd0f4154ee46f6991919b5bc63ca72433d907d08a4+c37e8a64ccde01926cfc1fcf2052df18c1189f3386197e21d8c9e8f1bfb3c22e
 #GAS = 2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7
+
+
 
 class Server:
     
@@ -46,14 +48,17 @@ def main():
     # Creating sockets for each server
     servers = [Server(host, port_offset+i, i, socket.socket(ipv, socket.SOCK_DGRAM)) for i in range(4)]
 
+    
     for server in servers:
         server.sock.settimeout(1)
+
 
     # AUTHENTICATION
     auth(gas, servers)
     for server in servers:
         print(server)
     print("###########")
+   
     # GETCANNONS
     cannons = get_cannons(gas, servers)
     print(cannons)
@@ -71,21 +76,26 @@ def main():
     turn = 0
     while True:
 
+        print(turn)
+
         # GETTURN
         responses = get_turn(gas, servers, turn)
     
         # GAMEOVER
+    
         for response in responses:
             for resp in response:
-                if resp.get("type") == "gameover" :
-                    print("GAMEOVER")
-                    score = resp.get("score")
-                    print(f"score: {score}")
+        #             # print("GAMEOVER")
+        #             # score = resp.get("score")
+        #             # print(f"score: {score}")
+        #             # quit(gas, servers)
+        #             print(resp) 
+                check_gameover(resp, gas, servers)
                     
-                    for server in servers:
-                        server.get("socket").close()
+        #             # for server in servers:
+        #             #     server.get("socket").close()
                     
-                    return
+        #             # return
         
         ships_table = [[[] for _ in range(8)] for _ in range(4)]
         for i, response in enumerate(responses):
@@ -98,15 +108,15 @@ def main():
                         if ships:
                             ships_table[i][bridge-1].extend(ships)
 
-        for row in ships_table:
-            print(row)
-        print("###########")
+        # for row in ships_table:
+        #     print(row)
+        # print("###########")
 
         shots_list = get_shots_list(cannons_table, ships_table)
 
-        print(shots_list)
-        for shot in shots_list:
-            print(f"Cannon {shot.get('cannon')} shot ship {shot.get('id')} at river {shot.get('river')}")    
+        # print(shots_list)
+        # for shot in shots_list:
+        #     print(f"Cannon {shot.get('cannon')} shot ship {shot.get('id')} at river {shot.get('river')}")    
 
         print("###########")
 
@@ -119,7 +129,7 @@ def main():
 
             
                         
-            deal_damage(ships_table, shots_list)
+            # deal_damage(ships_table, shots_list)
             # response = []
             # response = shot(gas, servers, shots_list)
             # print("Shot response:")
@@ -130,11 +140,11 @@ def main():
         
 
         turn += 1
-        if turn >= MAX_TURNS: 
-            quit(gas, servers)
-            break
+        # if turn >= MAX_TURNS: 
+        #     quit(gas, servers)
+        #     break
         
-        time.sleep(3)
+        time.sleep(0)
         
     for server in servers:
         server.sock.close()

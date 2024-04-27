@@ -38,9 +38,10 @@ def receive_from_servers(servers):
         sock = server.sock
         id = server.id
         try:
-            response, _ = sock.recvfrom(1024)
+            response, _ = sock.recvfrom(2048)
             response = json.loads(response.decode())
             responses[id] = response
+
         except (socket.timeout, json.decoder.JSONDecodeError) as e:
             print(f"Error receiving response from server {id}: {e}")
             # print(f"Received response: {response}")
@@ -165,12 +166,13 @@ def get_turn(gas, servers, turn):
                 # sending again to server
                 send_to_servers([servers[server]], json_data)
                 resp = (receive_from_servers([servers[server]])[server])
-
                 empty_resp = get_empty_response(resp)
                 count+=1
 
             if len(empty_resp) != 0:
                 logexit(f"Failed to get all turns from servers {empty_resp}")
+
+            check_gameover(resp, gas, servers)
 
             if resp.get("type") == "state" and resp.get("turn") == turn:
                 bridges[resp.get("bridge")-1] = 1
@@ -206,9 +208,11 @@ def send_shot(gas, servers, shots_list):
         response = {}
 
         while response.get("type") != "shotresp" or response.get("id") != shot.get("id"):
+                
                 send_to_servers([servers[server]], json_data)
                 responses = receive_from_servers([servers[server]])
                 response = responses[server_id]
+                check_gameover(response, gas, servers)
 
         print(response)
 
@@ -305,17 +309,25 @@ def get_shots_list(cannons_table, ships_table):
     return shots_list
 
 
-def move_ships(ships_table):
-    """
-       Function to move one position on the ships
-       It must be called at the end of every round 
-    """
-    for i in range(4):
-        for j in range(7, 0, -1): 
-            ships_table[i][j] = ships_table[i][j-1]
-        
-        ships_table[i][0] = [] 
+def check_gameover(json_response,gas, servers):
 
+    
+    if json_response.get("type") == "gameover":
+        print("GAME OVER")
+        if json_response.get("status") == 1:
+            description = json_response.get("description")
+            quit(gas,servers)
+
+            for server in servers:
+                server.get("socket").close()
+            logexit(f"The game terminated due to: {description}")
+        
+        elif json_response.get("status") == 0:
+            print(json_response)
+            quit(gas, servers)
+            for server in servers:
+                server.get("socket").close()
+            logexit("GAME OVER")
 
 
 def deal_damage(ships_table, shot_list):
