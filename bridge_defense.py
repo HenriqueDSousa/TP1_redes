@@ -13,9 +13,8 @@ SHOTS_TO_SINK = {
     'destroyer': 2,
     'battleship': 3
 }
-#GAS = teste:42:01b6e855db069213ebe27fbd0f4154ee46f6991919b5bc63ca72433d907d08a4+c37e8a64ccde01926cfc1fcf2052df18c1189f3386197e21d8c9e8f1bfb3c22e
-#GAS = 2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7
 
+#GAS = 2021031890:42:908687141401e1279d3f20850d626082cc4b50e8aa95366ac4dbaa0b1c2e1dac+2021031912:42:73651ac75ee9f68e8f8cd5e1160516a0f815a2e6c525b8b464ccf0d5d79b0e73+460f84c417b7f8bfdb21d2689dc3ff5621cd7c7fc80a0ca01398ae4b9c8116d3
 
 
 class Server:
@@ -38,14 +37,21 @@ def main():
         usage()
         exit(1)
 
-    host = socket.gethostbyname(sys.argv[1])
-    port_offset = int(sys.argv[2])
+    try:
+        host = socket.getaddrinfo(sys.argv[1], None, socket.AF_INET)[0][4][0]
+        # print(host)
+        ipv = socket.AF_INET
+    except:
+        host = socket.getaddrinfo(sys.argv[1], None, socket.AF_INET6)[0][4][0]
+        # print(host)
+        ipv = socket.AF_INET6
 
-    ipv = socket.AF_INET if ':' not in host else socket.AF_INET6
+    port_offset = int(sys.argv[2])
+    print(host, ipv)
+    
     gas = sys.argv[3]  # Group Authentication Sequence (GAS)
 
-    print(gas)
-    # Creating sockets for each server
+
     servers = [Server(host, port_offset+i, i, socket.socket(ipv, socket.SOCK_DGRAM)) for i in range(4)]
 
     
