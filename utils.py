@@ -56,6 +56,8 @@ def quit(gas, servers):
     }
     json_data = json.dumps(data)
     send_to_servers(servers, json_data)
+    for server in servers:
+        server.sock.close()
 
 
 def get_empty_response(responses):
@@ -72,30 +74,42 @@ def auth(gas, servers):
             "auth": gas
         }
     
-    max_tries = 2
-    count = 0
+    max_tries = 3
+    
 
     json_data = json.dumps(data)
     send_to_servers(servers, json_data)
-    responses = receive_from_servers(servers)
-    empty_responses = get_empty_response(responses)
+    
+    for server_index in range(len(servers)):
 
-    while len(empty_responses) != 0 and count < max_tries:
-        temp_servers = [server for server in servers if server.id in empty_responses]
-        send_to_servers(temp_servers, json_data)
-        temp_response = receive_from_servers(temp_servers)
-        for i in empty_responses:
-            responses[i] = temp_response[i]
-        empty_responses = get_empty_response(responses)
-        count+=1
+        authenticated = 0
+        while not (authenticated):
 
-    if len(get_empty_response(responses)) != 0:
-        logexit("Failed to authenticate with the server")
+            count = 0
+            resp = (receive_from_servers([servers[server_index]])[server_index])
+            
+            #check if response is empty
+            if not resp and count < max_tries:
+                
+                resp = (receive_from_servers([servers[server_index]])[server_index])
+                
+                count+=1
 
-    for i, response in enumerate(responses):
-        if response.get('status', -1) != 0:
-            logexit("Invalid GAS")
-        servers[i].river = response.get('river')
+            if resp:
+
+                check_gameover(resp, gas, servers)
+
+                if resp.get("type") == "authresp":
+                    if resp.get("status") == 0:
+                        authenticated = 1    
+                    elif resp.get("status") == 1:
+                        quit(gas, servers)
+                        logexit("Authentication error")
+            
+            else: 
+                send_to_servers(servers, json_data)
+
+
 
 def get_cannons(gas, servers):
     data = {
@@ -109,22 +123,29 @@ def get_cannons(gas, servers):
 
     json_data = json.dumps(data)
 
-    send_to_servers(servers, json_data)
-    responses = receive_from_servers(servers)
-    empty_responses = get_empty_response(responses)
+    for server_index in range(len(servers)):
 
-    while len(empty_responses) == 4 and count < max_tries:
-        send_to_servers(servers, json_data)
-        responses = receive_from_servers(servers)
-        empty_responses = get_empty_response(responses)
-        count+=1
+        fetch = 0
+        while not (fetch):
 
-    if empty_responses == 4:
-        logexit("Failed to get cannons")
+            count = 0
+            resp = (receive_from_servers([servers[server_index]])[server_index])
+            
+            
+            if not resp and count < max_tries:
+                resp = (receive_from_servers([servers[server_index]])[server_index])
+                count+=1
 
-    for response in responses:
-        if response != {}:
-            return response.get('cannons')
+            if resp:
+
+                check_gameover(resp, gas, servers)
+                if resp.get("type") == "cannons":
+                    return resp.get("cannons")
+
+            else: 
+                send_to_servers(servers, json_data)
+        
+
 
 def get_turn(gas, servers, turn):
     data = {
@@ -136,6 +157,8 @@ def get_turn(gas, servers, turn):
     json_data = json.dumps(data)
     max_tries = 3
     
+    # sending to each server
+    send_to_servers(servers, json_data)
 
     # responses template to all 4 servers
     responses = [[], [], [], []]
@@ -143,41 +166,35 @@ def get_turn(gas, servers, turn):
 
     for server in range(len(servers)):
 
-        # sending to each server
-        send_to_servers([servers[server]], json_data)
         count = 0
         response = []
         
         bridges = [0, 0, 0, 0, 0, 0, 0, 0]
         # getting the 8 bridges info
+        
 
-        while(True):
-
-            if all(elem != 0 for elem in bridges):
-                break
+        while not all(bridges):
 
             resp = (receive_from_servers([servers[server]])[server])
             
             #check if response is empty
-            empty_resp = get_empty_response(resp)
-            
-            while len(empty_resp) != 0 and count < max_tries:
+            if not resp and count < max_tries:
                 
-                # sending again to server
-                send_to_servers([servers[server]], json_data)
                 resp = (receive_from_servers([servers[server]])[server])
-                empty_resp = get_empty_response(resp)
+                
                 count+=1
 
-            if len(empty_resp) != 0:
-                logexit(f"Failed to get all turns from servers {empty_resp}")
+            if resp:
 
-            check_gameover(resp, gas, servers)
+                check_gameover(resp, gas, servers)
 
-            if resp.get("type") == "state" and resp.get("turn") == turn:
-                bridges[resp.get("bridge")-1] = 1
-            
-            response.append(resp)
+                if resp.get("type") == "state" and resp.get("turn") == turn:
+                    bridges[resp.get("bridge")-1] = 1
+                
+                response.append(resp)
+                
+            else: 
+                send_to_servers(servers, json_data)
 
         responses[server] = response
 
@@ -194,11 +211,7 @@ def send_shot(gas, servers, shots_list):
                 "auth": gas,
                 "cannon": cannon,
                 "id": shot.get("id")
-            }
-        
-        # print("Cannon:",cannon, shot.get('id'), server)
-
-        
+            }      
         
         json_data = json.dumps(data)
         send_to_servers([servers[server]], json_data)
@@ -317,16 +330,11 @@ def check_gameover(json_response,gas, servers):
         if json_response.get("status") == 1:
             description = json_response.get("description")
             quit(gas,servers)
-
-            for server in servers:
-                server.get("socket").close()
             logexit(f"The game terminated due to: {description}")
         
         elif json_response.get("status") == 0:
             print(json_response)
             quit(gas, servers)
-            for server in servers:
-                server.get("socket").close()
             logexit("GAME OVER")
 
 

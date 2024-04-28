@@ -13,8 +13,9 @@ SHOTS_TO_SINK = {
     'destroyer': 2,
     'battleship': 3
 }
+#GAS = teste:42:01b6e855db069213ebe27fbd0f4154ee46f6991919b5bc63ca72433d907d08a4+c37e8a64ccde01926cfc1fcf2052df18c1189f3386197e21d8c9e8f1bfb3c22e
+#GAS = 2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7
 
-#GAS = 2021031890:42:908687141401e1279d3f20850d626082cc4b50e8aa95366ac4dbaa0b1c2e1dac+2021031912:42:73651ac75ee9f68e8f8cd5e1160516a0f815a2e6c525b8b464ccf0d5d79b0e73+460f84c417b7f8bfdb21d2689dc3ff5621cd7c7fc80a0ca01398ae4b9c8116d3
 
 
 class Server:
@@ -37,21 +38,14 @@ def main():
         usage()
         exit(1)
 
-    try:
-        host = socket.getaddrinfo(sys.argv[1], None, socket.AF_INET)[0][4][0]
-        # print(host)
-        ipv = socket.AF_INET
-    except:
-        host = socket.getaddrinfo(sys.argv[1], None, socket.AF_INET6)[0][4][0]
-        # print(host)
-        ipv = socket.AF_INET6
-
+    host = socket.gethostbyname(sys.argv[1])
     port_offset = int(sys.argv[2])
-    print(host, ipv)
-    
+
+    ipv = socket.AF_INET if ':' not in host else socket.AF_INET6
     gas = sys.argv[3]  # Group Authentication Sequence (GAS)
 
-
+    print(gas)
+    # Creating sockets for each server
     servers = [Server(host, port_offset+i, i, socket.socket(ipv, socket.SOCK_DGRAM)) for i in range(4)]
 
     
@@ -91,17 +85,8 @@ def main():
     
         for response in responses:
             for resp in response:
-        #             # print("GAMEOVER")
-        #             # score = resp.get("score")
-        #             # print(f"score: {score}")
-        #             # quit(gas, servers)
-        #             print(resp) 
+        #             
                 check_gameover(resp, gas, servers)
-                    
-        #             # for server in servers:
-        #             #     server.get("socket").close()
-                    
-        #             # return
         
         ships_table = [[[] for _ in range(8)] for _ in range(4)]
         for i, response in enumerate(responses):
@@ -114,15 +99,10 @@ def main():
                         if ships:
                             ships_table[i][bridge-1].extend(ships)
 
-        # for row in ships_table:
-        #     print(row)
-        # print("###########")
 
         shots_list = get_shots_list(cannons_table, ships_table)
 
-        # print(shots_list)
-        # for shot in shots_list:
-        #     print(f"Cannon {shot.get('cannon')} shot ship {shot.get('id')} at river {shot.get('river')}")    
+    
 
         print("###########")
 
@@ -134,21 +114,12 @@ def main():
             send_shot(gas, servers, shots_list)
 
             
-                        
-            # deal_damage(ships_table, shots_list)
-            # response = []
-            # response = shot(gas, servers, shots_list)
-            # print("Shot response:")
-            # print(response)
-            
             print("###########")
         
         
 
         turn += 1
-        # if turn >= MAX_TURNS: 
-        #     quit(gas, servers)
-        #     break
+    
         
         time.sleep(0)
         

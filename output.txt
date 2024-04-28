@@ -1,0 +1,32 @@
+150.164.213.243 AddressFamily.AF_INET
+Server 0:
+	Address: (('150.164.213.243', 51111))
+	River: 1
+Server 1:
+	Address: (('150.164.213.243', 51112))
+	River: 2
+Server 2:
+	Address: (('150.164.213.243', 51113))
+	River: 3
+Server 3:
+	Address: (('150.164.213.243', 51114))
+	River: 4
+###########
+[[4, 4], [7, 4], [4, 0], [3, 4], [3, 1], [2, 2], [5, 3], [4, 1]]
+[0, 0, 0, 1, 0, 0, 0, 0]
+[0, 0, 1, 1, 0, 0, 0, 0]
+[0, 1, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 1, 0, 0, 0]
+[0, 0, 1, 1, 0, 0, 1, 0]
+###########
+0
+[[{'id': 218969, 'hull': 'battleship', 'hits': 0}], [], [], [], [], [], [], []]
+[[{'id': 218971, 'hull': 'frigate', 'hits': 0}], [], [], [], [], [], [], []]
+[[{'id': 218968, 'hull': 'battleship', 'hits': 0}, {'id': 218970, 'hull': 'battleship', 'hits': 0}], [], [], [], [], [], [], []]
+[[], [], [], [], [], [], [], []]
+###########
+###########
+1
+GAME OVER
+{'type': 'gameover', 'auth': '2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7', 'status': 1, 'description': 'Client 2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7 is unknown', 'score': None}
+The game terminated due to: Client 2021031912:1:572a662bd2b4f3729c67c2e5c011e4355b432a90f1c97e03d63b5b550b59ba38+a15ca8923705ad48e6456f27ace5695bd590c518fbe4e3f41f823f602fb2cff7 is unknown
