@@ -43,7 +43,8 @@ def receive_from_servers(servers):
             responses[id] = response
 
         except (socket.timeout, json.decoder.JSONDecodeError) as e:
-            print(f"Error receiving response from server {id}: {e}")
+            pass
+            # print(f"Error receiving response from server {id}: {e}")
             # print(f"Received response: {response}")
             # responses[id] = {}  # Empty response or handle error as appropriate
 
@@ -101,6 +102,7 @@ def auth(gas, servers):
 
                 if resp.get("type") == "authresp":
                     if resp.get("status") == 0:
+                        servers[server_index].set_river(resp.get('river'))
                         authenticated = 1    
                     elif resp.get("status") == 1:
                         quit(gas, servers)
@@ -227,8 +229,8 @@ def send_shot(gas, servers, shots_list):
                 response = responses[server_id]
                 check_gameover(response, gas, servers)
 
-        if response.get("type") != "shotresp":
-            print(f"Received non-shotresp response from server {server_id}: {response}")
+        # if response.get("type") != "shotresp":
+        #     print(f"Received non-shotresp response from server {server_id}: {response}")
 
         all_responses.append(responses[server_id])
 

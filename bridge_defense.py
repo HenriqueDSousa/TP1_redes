@@ -38,13 +38,19 @@ def main():
         usage()
         exit(1)
 
-    host = socket.gethostbyname(sys.argv[1])
-    port_offset = int(sys.argv[2])
+    try:
+        host = socket.getaddrinfo(sys.argv[1], None, socket.AF_INET)[0][4][0]
+        print(host)
+        ipv = socket.AF_INET
+    except:
+        host = socket.getaddrinfo(sys.argv[1], None, socket.AF_INET6)[0][4][0]
+        print(host)
+        ipv = socket.AF_INET6
 
-    ipv = socket.AF_INET if ':' not in host else socket.AF_INET6
+    port_offset = int(sys.argv[2])
     gas = sys.argv[3]  # Group Authentication Sequence (GAS)
 
-    print(gas)
+    # print(gas)
     # Creating sockets for each server
     servers = [Server(host, port_offset+i, i, socket.socket(ipv, socket.SOCK_DGRAM)) for i in range(4)]
 
@@ -55,28 +61,28 @@ def main():
 
     # AUTHENTICATION
     auth(gas, servers)
-    for server in servers:
-        print(server)
-    print("###########")
+    # for server in servers:
+    #     print(server)
+    # print("###########")
    
     # GETCANNONS
     cannons = get_cannons(gas, servers)
-    print(cannons)
+    # print(cannons)
 
     cannons_table = [[0 for _ in range(8)] for _ in range(5)]
     for coordinate in cannons:
         cannons_table[coordinate[1]][coordinate[0]-1] = 1
-    for row in cannons_table:
-        print(row)
+    # for row in cannons_table:
+    #     print(row)
 
-    print("###########")
+    # print("###########")
     
     # # initial ships table
     
     turn = 0
     while True:
 
-        print(turn)
+        # print(turn)
 
         # GETTURN
         responses = get_turn(gas, servers, turn)
@@ -99,17 +105,17 @@ def main():
                         if ships:
                             ships_table[i][bridge-1].extend(ships)
 
-        for row in ships_table:
-            print(row)
+        # for row in ships_table:
+        #     print(row)
 
 
         shots_list = get_shots_list(cannons_table, ships_table)
 
-        for shot in shots_list:
-            print(shot.get("cannon"), shot.get("id"), shot.get("river"))
+        # for shot in shots_list:
+        #     print(shot.get("cannon"), shot.get("id"), shot.get("river"))
     
 
-        print("###########")
+        # print("###########")
 
 
 
