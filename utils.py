@@ -227,8 +227,6 @@ def send_shot(gas, servers, shots_list):
                 response = responses[server_id]
                 check_gameover(response, gas, servers)
 
-        print(response)
-
         if response.get("type") != "shotresp":
             print(f"Received non-shotresp response from server {server_id}: {response}")
 
@@ -273,7 +271,6 @@ def get_shots_list(cannons_table, ships_table):
                         if ship_life < weakest_ship_life and ship_can_be_shot(ship_id, ships_shotted, ship_life):
                             weakest_ship = ship.get('id')
                             river = row
-                            print([bridge + 1, row], weakest_ship)
                             weakest_ship_life = ship_life
                 
                 # if ship is between row 4 and 0, it can shot both adjacent rivers
@@ -294,19 +291,17 @@ def get_shots_list(cannons_table, ships_table):
                         if ship_life < weakest_ship_life and ship_can_be_shot(ship_id, ships_shotted, ship_life):
                             weakest_ship = ship.get('id')
                             river = row-1
-                            print([bridge + 1, row-1], weakest_ship)
                             weakest_ship_life = ship_life
                 
                 # if ship is in row 4 it can shot only in river 4
                 elif row  == 4:
-                    # print(f"ships found at [{bridge+1}, {row}]")
+                    
                     for ship in ships_table[row-1][bridge]:
                         ship_life = SHOTS_TO_SINK[ship.get('hull')] - ship.get('hits')
                         ship_id = ship.get('id')
                         if ship_life < weakest_ship_life and ship_can_be_shot(ship_id, ships_shotted, ship_life):
                             weakest_ship = ship.get('id')
                             river = row - 1
-                            print([bridge + 1, row-1], weakest_ship)
                             weakest_ship_life = ship_life
 
                 if weakest_ship != -1:

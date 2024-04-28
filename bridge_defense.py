@@ -99,9 +99,14 @@ def main():
                         if ships:
                             ships_table[i][bridge-1].extend(ships)
 
+        for row in ships_table:
+            print(row)
+
 
         shots_list = get_shots_list(cannons_table, ships_table)
 
+        for shot in shots_list:
+            print(shot.get("cannon"), shot.get("id"), shot.get("river"))
     
 
         print("###########")
@@ -110,17 +115,9 @@ def main():
 
         if len(shots_list) != 0:
             # SHOT
-            print("SHOT!")
             send_shot(gas, servers, shots_list)
 
-            
-            print("###########")
-        
-        
-
-        turn += 1
-    
-        
+        turn += 1        
         time.sleep(0)
         
     for server in servers:
