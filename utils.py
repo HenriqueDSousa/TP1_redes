@@ -2,6 +2,7 @@ import socket
 import json
 import time
 
+MAX_TRIES = 5
 
 SHOTS_TO_SINK = {
     'frigate': 1,
@@ -75,9 +76,6 @@ def auth(gas, servers):
             "auth": gas
         }
     
-    max_tries = 3
-    
-
     json_data = json.dumps(data)
     send_to_servers(servers, json_data)
     
@@ -90,7 +88,7 @@ def auth(gas, servers):
             resp = (receive_from_servers([servers[server_index]])[server_index])
             
             #check if response is empty
-            if not resp and count < max_tries:
+            if not resp and count < MAX_TRIES:
                 
                 resp = (receive_from_servers([servers[server_index]])[server_index])
                 
@@ -120,7 +118,6 @@ def get_cannons(gas, servers):
         }
     
     responses = []
-    max_tries = 3
     count = 0
 
     json_data = json.dumps(data)
@@ -134,7 +131,7 @@ def get_cannons(gas, servers):
             resp = (receive_from_servers([servers[server_index]])[server_index])
             
             
-            if not resp and count < max_tries:
+            if not resp and count < MAX_TRIES:
                 resp = (receive_from_servers([servers[server_index]])[server_index])
                 count+=1
 
@@ -157,7 +154,6 @@ def get_turn(gas, servers, turn):
         }
 
     json_data = json.dumps(data)
-    max_tries = 3
     
     # sending to each server
     send_to_servers(servers, json_data)
@@ -180,7 +176,7 @@ def get_turn(gas, servers, turn):
             resp = (receive_from_servers([servers[server]])[server])
             
             #check if response is empty
-            if not resp and count < max_tries:
+            if not resp and count < MAX_TRIES:
                 
                 resp = (receive_from_servers([servers[server]])[server])
                 
